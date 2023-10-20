@@ -1,0 +1,22 @@
+.grid {
+  display: grid;
+  margin: auto;
+  width: 500px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  row-gap: 2px;
+  column-gap: 2px;
+}
+
+.grid-cell {
+  background-color: black;
+  height: 5em;
+}
+
+.grid-cell:hover {
+  background-color: rgb(52, 52, 52);
+}
+
+.grid-cell.snake {
+  background-color: olive;
+}
