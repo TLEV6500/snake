@@ -12,22 +12,21 @@ function getRandomLocation(maxHeight = height, maxWidth = width) {
 }
 
 class GameObject {
-	constructor(objectType = "", startPos) {
+	constructor(objectType = [], startPos) {
 		this.startPos = startPos;
 		this.curPos = startPos;
 		this.prevPos = startPos;
 		this.HTMLElement = gridArr[this.startPos.y][this.startPos.x];
-		this.HTMLElement.classList.add(objectType);
+		this.HTMLElement.classList.add(...objectType);
 		this.objectType = objectType;
 	}
 
 	hideObject() {
-		this.HTMLElement.classList.remove(this.objectType);
+		this.HTMLElement.classList.remove(...this.objectType);
 	}
 
 	showObject() {
-		if (this.HTMLElement.className.includes(this.objectType)) return;
-		this.HTMLElement.classList.add(this.objectType);
+		this.HTMLElement.classList.add(...this.objectType);
 	}
 
 	updateHTMLElement(x, y) {
@@ -69,8 +68,8 @@ class GameObject {
 }
 
 class Snake extends GameObject {
-	constructor(startPos) {
-		super("snake", startPos);
+	constructor(startPos, typeMods = []) {
+		super(["snake", ...typeMods], startPos);
 		this.followingNode = null;
 	}
 
@@ -96,7 +95,7 @@ class SnakeBody extends Snake {
 
 class SnakeHead extends Snake {
 	constructor(startPos = { x: 0, y: 0 }) {
-		super(startPos);
+		super(startPos, ["head"]);
 		this.lastNode = this;
 		this.length = 1;
 	}
@@ -147,8 +146,8 @@ class SnakeHead extends Snake {
 }
 
 class SnakeFood extends GameObject {
-	constructor(startPos) {
-		super("food", startPos);
+	constructor(startPos, typeMods = []) {
+		super(["food", ...typeMods], startPos);
 		this.timesEaten = 0;
 	}
 
