@@ -20,3 +20,7 @@
 .grid-cell.snake {
   background-color: olive;
 }
+
+.grid-cell.food {
+  background-color: red;
+}
